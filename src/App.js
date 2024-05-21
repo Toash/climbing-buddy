@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
+import "./App.css";
 
 const formatVGrade = (vGrade) => {
   return vGrade.startsWith("V") ? vGrade : `V${vGrade}`;
@@ -10,7 +11,7 @@ const App = () => {
   const [userData, setUserData] = useState({
     edgeHang: "",
     maxPullUps: "",
-    vGrade: "", // Add a field for V grade
+    vGrade: "",
   });
   const [recommendations, setRecommendations] = useState([]);
   const [meanValues, setMeanValues] = useState({ pullUps: 0, edgeHang: 0 });
@@ -155,45 +156,45 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Training Recommendations</h1>
+    <div id="root">
+      <h1>Bouldering Training Recommendations</h1>
+      <p>
+        Compares your input with user submitted data to see where you are
+        physically for your given grade
+      </p>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            20mm Edge Hang (in seconds):
-            <input
-              type="text"
-              name="edgeHang"
-              value={userData.edgeHang}
-              onChange={handleChange}
-            />
-          </label>
+        <div class="userInput">
+          <label for="edgeHang">18mm Hang 10 seconds (kg):</label>
+          <input
+            type="text"
+            name="edgeHang"
+            value={userData.edgeHang}
+            onChange={handleChange}
+          />
         </div>
 
-        <div>
-          <label>
-            5 Rep Max Pullups:
-            <input
-              type="text"
-              name="maxPullUps"
-              value={userData.maxPullUps}
-              onChange={handleChange}
-            />
-          </label>
+        <div class="userInput">
+          <label for="maxPullUps">5 Rep Max Pullups (kg):</label>
+          <input
+            type="text"
+            name="maxPullUps"
+            value={userData.maxPullUps}
+            onChange={handleChange}
+          />
         </div>
 
-        <div>
-          <label>
-            V Grade:
-            <input
-              type="text"
-              name="vGrade"
-              value={userData.vGrade}
-              onChange={handleChange}
-            />
-          </label>
+        <div class="userInput">
+          <label for="vGrade">V Grade:</label>
+          <input
+            type="text"
+            name="vGrade"
+            value={userData.vGrade}
+            onChange={handleChange}
+          />
         </div>
-        <button type="submit">Submit</button>
+        <button class="submitUserInput" type="submit">
+          Submit
+        </button>
       </form>
       {recommendations.length > 0 && (
         <div>
